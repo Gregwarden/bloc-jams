@@ -17,6 +17,7 @@ body.album {
      position: relative;
      top: 1.5rem;
      padding: 1rem;
+     color: black;
  }
 
  .album-view-details .album-view-title {
@@ -50,14 +51,17 @@ body.album {
 
 .song-item-number {
    width: 5%;
+   color: black;
 }
 
 .song-item-title {
    width: 85%;
+   color: black;
 }
 
 .song-item-duration {
    width: 5%;
+   color: black;
 }
 /* #2 */
 @media (max-width: 640px) and (min-width: 320px) {
