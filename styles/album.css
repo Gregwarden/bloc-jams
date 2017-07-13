@@ -1,9 +1,10 @@
 body.album {
-     background-image: url(bloc-jams\assets\blurred_backgrounds\blur_bg_3);
+     background-image: url(../assets/blurred_backgrounds/blur_bg_3.jpg);
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center center;
      background-size: cover;
+     padding-bottom: 200px;
  }
 
  .album-cover-art {
