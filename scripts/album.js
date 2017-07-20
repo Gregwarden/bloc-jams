@@ -1,8 +1,24 @@
 var setSong = function(songNumber) {
+     if (currentSoundFile) {
+         currentSoundFile.stop();
+    }
      currentlyPlayingSongNumber = parseInt ( songNumber );
      currentlySongAlbum = currentAlbum.songs [songNumber - 1];
+     // #1
+ currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+     // #2
+     formats: [ 'mp3' ],
+     preload: true
+ });
+
+ setVolume(currentVolume);
 };
 
+var setVolume = function(volume) {
+    if (currentSoundFile) {
+        currentSoundFile.setVolume(volume);
+    }
+};
 var getSongNumber = function(number) {
      return $('.song-item-number[data-song-number="' + number + '"]');
 }
@@ -41,7 +57,7 @@ var clickHandler = function() {
            currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
            updatePlayerBarSong();
 
-       } else if (currentlyPlayingSongNumber === songNumber) {
+       } else if (currentlyPlayingSongNumber === songNumber) {9
            // Switch from Pause -> Play button to pause currently playing song.
            $(this).html(playButtonTemplate);
            $('.main-controls .play-pause').html(playerBarPlayButton);
@@ -119,6 +135,8 @@ var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause">
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
+var currentSoundFile = null;
+var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
@@ -142,7 +160,8 @@ var nextSong = function() {
     var lastSongNumber = currentlyPlayingSongNumber;
 
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex + 1);
+    currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
     // Update the Player Bar information
@@ -168,7 +187,8 @@ var previousSong = function() {
     var lastSongNumber = currentlyPlayingSongNumber;
 
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex + 1);
+    currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
     // Update the Player Bar information
