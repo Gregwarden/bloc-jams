@@ -30,4 +30,4 @@ $(window).scroll(function(event) {
            animatePoints();
    }
  });
-}
+});
